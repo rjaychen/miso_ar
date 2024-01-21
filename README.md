@@ -1,4 +1,6 @@
 # Misophonia AR
+Misophonia is a condition affecting some people wherein they experience negative reactions to certain audio sounds (triggers).
+
 This repo is based off the MRTKDevTemplate project from Unity. Larger files, such as spatial audio, have been omitted from the project due to sizing restrictions, but are available through the Mixed Reality Feature Tool found here. 
 
 ## Mixed Reality Toolkit for Unity

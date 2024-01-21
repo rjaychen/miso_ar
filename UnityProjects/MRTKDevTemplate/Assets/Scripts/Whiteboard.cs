@@ -32,6 +32,10 @@ namespace MixedReality.Toolkit.Examples.Demos
         // Used draw a full line between current frame + last frame's "paintbrush" position.
         private Dictionary<IXRInteractor, Vector2> lastPositions = new Dictionary<IXRInteractor, Vector2>();
 
+        float pixelCount;
+        float curpixelCount;
+        float percent;
+
         /// <summary>
         /// A Unity event function that is called on the frame when a script is enabled just before any of the update methods are called the first time.
         /// </summary> 
@@ -42,7 +46,9 @@ namespace MixedReality.Toolkit.Examples.Demos
             texture.hideFlags = HideFlags.HideAndDontSave;
             Renderer rend = GetComponent<Renderer>();
             rend.material.SetTexture("_MainTex", texture);
-        }
+            pixelCount = TextureSize * TextureSize;
+            curpixelCount = pixelCount;
+    }
 
         public void ClearDrawing()
         {
@@ -103,6 +109,14 @@ namespace MixedReality.Toolkit.Examples.Demos
                     for (int i = 0; i < Vector2.Distance(pixelCoordinate, lastPosition); i++)
                     {
                         DrawSplat(Vector2.Lerp(lastPosition, pixelCoordinate, i / Vector2.Distance(pixelCoordinate, lastPosition)), data);
+                        curpixelCount -= 3;
+                        if (curpixelCount > 0) {
+                            percent = 1 - (curpixelCount / pixelCount);
+                        }
+                        else
+                        {
+                            percent = 1.0f;
+                        }
                     }
                     
                     // Write/update the last-position.

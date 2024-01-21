@@ -510,7 +510,7 @@ MonoBehaviour:
   required: 1
   disableFirstPersonObserver: 0
   enablePoseUpdateOnBeforeRender: 0
-  validationRuleTarget: 0
+  validationRuleTarget: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -35,7 +35,8 @@ namespace MixedReality.Toolkit.Examples.Demos
         // Used draw a full line between current frame + last frame's "paintbrush" position.
         private Dictionary<IXRInteractor, Vector2> lastPositions = new Dictionary<IXRInteractor, Vector2>();
 
-        // Added functionality here
+        // Preferably an odd number!
+        public int penThickness = 3;
         public TMP_Text percentText;
         public AudioSource audioSource;
         public AudioClip clip;
@@ -47,6 +48,8 @@ namespace MixedReality.Toolkit.Examples.Demos
         public float lowerBound;
         private float pixelCount;
         private float curpixelCount;
+        private int startSplat;
+        private int endSplat;
         float percent;
 
         /// <summary>
@@ -66,7 +69,9 @@ namespace MixedReality.Toolkit.Examples.Demos
             rend.material.SetTexture("_MainTex", texture);
             pixelCount = TextureSize * TextureSize;
             curpixelCount = pixelCount;
-    }
+            startSplat = - (int)(penThickness / 2);
+            endSplat = -startSplat + 1;
+        }
 
         public void ClearDrawing()
         {
@@ -145,10 +150,10 @@ namespace MixedReality.Toolkit.Examples.Demos
                     for (int i = 0; i < Vector2.Distance(pixelCoordinate, lastPosition); i++)
                     {
                         DrawSplat(Vector2.Lerp(lastPosition, pixelCoordinate, i / Vector2.Distance(pixelCoordinate, lastPosition)), data);
-                        curpixelCount -= 3;
+                        curpixelCount -= penThickness;
                         if (curpixelCount > 0) {
                             percent = 1 - (curpixelCount / pixelCount);
-                            percentText.SetText("Percent Drawn: "+ (percent * 100).ToString("n2") + "%");
+                            percentText.SetText("Drawing Progress: "+ (percent * 100).ToString("n2") + "%");
                         }
                         else
                         {
@@ -186,10 +191,10 @@ namespace MixedReality.Toolkit.Examples.Demos
             // Compute index of pixel in NativeArray.
             int pixelIndex = Mathf.RoundToInt(pixelCoordinate.x) + TextureSize * Mathf.RoundToInt(pixelCoordinate.y);
 
-            // Draw a 3x3 splat, centered on pixelIndex.
-            for (int y = -1; y < 2; y++)
+            // Draw a penThickness x penThickness splat, centered on pixelIndex.
+            for (int y = startSplat; y < endSplat; y++)
             {
-                for (int x = -1; x < 2; x++)
+                for (int x = startSplat; x < endSplat; x++)
                 {
                     data[Mathf.Clamp(pixelIndex + x + (TextureSize * y), 0, data.Length - 1)] = drawingColor;
                 }

@@ -10,6 +10,9 @@ using Unity.Collections;
 using UnityEngine.XR.Interaction.Toolkit;
 using MixedReality.Toolkit.Input;
 using TMPro;
+using GLTFast.Schema;
+using UnityEngine.Rendering;
+using System;
 
 namespace MixedReality.Toolkit.Examples.Demos
 {
@@ -46,11 +49,13 @@ namespace MixedReality.Toolkit.Examples.Demos
         public float upperBound;
         [Range(0.0f, 1.0f)]
         public float lowerBound;
-        private float pixelCount;
-        private float curpixelCount;
+
         private int startSplat;
         private int endSplat;
-        float percent;
+        private Color32[] pixelArray;
+        private int pixelCount;
+        private int totalPixels;
+        private float percent;
 
         /// <summary>
         /// A Unity event function that is called on the frame when a script is enabled just before any of the update methods are called the first time.
@@ -59,24 +64,34 @@ namespace MixedReality.Toolkit.Examples.Demos
         {
             // Create new texture and bind it to renderer/material.
             
-            texture = new Texture2D(TextureSize, TextureSize, TextureFormat.RGBA32, false);
-            //
+            texture = new Texture2D(TextureSize, TextureSize, UnityEngine.TextureFormat.RGBA32, false);
             texture.SetPixels(originalTexture.GetPixels());
             texture.Apply();
-            //
             texture.hideFlags = HideFlags.HideAndDontSave;
             Renderer rend = GetComponent<Renderer>();
             rend.material.SetTexture("_MainTex", texture);
-            pixelCount = TextureSize * TextureSize;
-            curpixelCount = pixelCount;
-            startSplat = - (int)(penThickness / 2);
+            pixelArray = texture.GetPixels32(0);
+            for (int i = 0; i < pixelArray.Length; i++)
+            {
+                if (pixelArray[i].b > pixelArray[i].r & pixelArray[i].b > pixelArray[i].g & pixelArray[i].a > 0)
+                {
+                    pixelCount++;
+                }
+                else
+                {
+                    pixelArray[i] = new Color32(0, 0, 0, 0);
+                }
+            }
+            totalPixels = pixelCount;
+            Debug.Log(totalPixels);
+            startSplat = -(int)(penThickness / 2);
             endSplat = -startSplat + 1;
         }
 
         public void ClearDrawing()
         {
             // Destroys texture and re-inits.
-            Object.Destroy(texture);
+            UnityEngine.Object.Destroy(texture);
             Start();
         }
 
@@ -99,7 +114,7 @@ namespace MixedReality.Toolkit.Examples.Demos
         /// </summary>
         protected override void OnDestroy()
         {
-            Object.Destroy(texture);
+            UnityEngine.Object.Destroy(texture);
             base.OnDestroy();
         }
 
@@ -150,15 +165,8 @@ namespace MixedReality.Toolkit.Examples.Demos
                     for (int i = 0; i < Vector2.Distance(pixelCoordinate, lastPosition); i++)
                     {
                         DrawSplat(Vector2.Lerp(lastPosition, pixelCoordinate, i / Vector2.Distance(pixelCoordinate, lastPosition)), data);
-                        curpixelCount -= penThickness;
-                        if (curpixelCount > 0) {
-                            percent = 1 - (curpixelCount / pixelCount);
-                            percentText.SetText("Drawing Progress: "+ (percent * 100).ToString("n2") + "%");
-                        }
-                        else
-                        {
-                            percent = 1.0f;
-                        }
+                        percent = 1.0f - (float) pixelCount / (float) totalPixels; // this is probably really slow
+                        percentText.SetText("Drawing Progress: " + String.Format("{0:0.0}", (percent * 100)) + "%");
                     }
                     
                     // Write/update the last-position.
@@ -196,7 +204,9 @@ namespace MixedReality.Toolkit.Examples.Demos
             {
                 for (int x = startSplat; x < endSplat; x++)
                 {
-                    data[Mathf.Clamp(pixelIndex + x + (TextureSize * y), 0, data.Length - 1)] = drawingColor;
+                    int clamped = Mathf.Clamp(pixelIndex + x + (TextureSize * y), 0, data.Length - 1);
+                    if (data[clamped].b > data[clamped].r & data[clamped].b > data[clamped].g & data[clamped].a > 50) pixelCount--;
+                    data[clamped] = drawingColor;
                 }
             }
         }

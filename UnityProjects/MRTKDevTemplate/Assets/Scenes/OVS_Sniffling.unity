@@ -978,6 +978,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SampleHead
       objectReference: {fileID: 0}
+    - target: {fileID: 3989087790041628964, guid: 01105ad442a2c6842a902b810878a5e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4330147927809317790, guid: 01105ad442a2c6842a902b810878a5e6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -996,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330147927809317790, guid: 01105ad442a2c6842a902b810878a5e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5030656
+      value: -0.229
       objectReference: {fileID: 0}
     - target: {fileID: 4330147927809317790, guid: 01105ad442a2c6842a902b810878a5e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1004,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330147927809317790, guid: 01105ad442a2c6842a902b810878a5e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.1934836
+      value: 0.813
       objectReference: {fileID: 0}
     - target: {fileID: 4330147927809317790, guid: 01105ad442a2c6842a902b810878a5e6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1735,8 +1739,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799358218}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.16, y: 2.55, z: 0.23}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1.9, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 583498859}
@@ -2235,7 +2239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4639606900136385920}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0.039980438, y: 1.55, z: 1.0694}
+  m_LocalPosition: {x: 0.039980438, y: 1.564, z: 0.703}
   m_LocalScale: {x: 0.043279998, y: 0.043279998, z: 0.043279998}
   m_ConstrainProportionsScale: 0
   m_Children:

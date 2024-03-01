@@ -9,3 +9,4 @@
 *.meta eol=lf
 *.mat eol=lf
 *.anim eol=lf
+*.tgz filter=lfs diff=lfs merge=lfs -text

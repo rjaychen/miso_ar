@@ -1102,8 +1102,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1126936828}
   - component: {fileID: 1126936827}
-  - component: {fileID: 1126936825}
   - component: {fileID: 1126936829}
+  - component: {fileID: 1126936830}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -1111,25 +1111,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1126936825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126936824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1126936827}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: Duke_Blue_Devils_logo
-  mDatasetName: Vuforia/Hololens.xml
-  mCastedBehaviour: {fileID: 1126936827}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1126936827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,7 +1137,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1126936825}
+  mPreview: {fileID: 1126936830}
 --- !u!4 &1126936828
 Transform:
   m_ObjectHideFlags: 0
@@ -1217,6 +1198,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   myModelPrefab: {fileID: 1801320144}
+--- !u!114 &1126936830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126936824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1126936827}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: Duke_Blue_Devils_logo
+  mDatasetName: Vuforia/Hololens.xml
+  mCastedBehaviour: {fileID: 1126936827}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!4 &1197877338 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 361177447810077852, guid: eea3b04ae3dd81a41a4bed3b7cb79de7, type: 3}
@@ -2055,7 +2055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1801320145
 Transform:
   m_ObjectHideFlags: 0

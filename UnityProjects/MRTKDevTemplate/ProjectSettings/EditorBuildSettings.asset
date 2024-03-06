@@ -122,7 +122,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OVS_Sniffling.unity
     guid: 0951206f6bb075c4fbb1f81512575caf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PAVS_DrawingOnPaper.unity
     guid: 66cfe41dd7e65bc499b2b6771ba9d100
   m_configObjects:
